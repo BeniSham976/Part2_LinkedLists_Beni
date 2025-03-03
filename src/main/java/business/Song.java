@@ -2,7 +2,7 @@ package business;
 
 /**
  *
- * @author michelle
+ * @author Beni
  */
 public class Song {
     private String artist;
