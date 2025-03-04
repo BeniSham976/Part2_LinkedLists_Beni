@@ -1,5 +1,7 @@
 package utils;
 
+import business.Song;
+
 /**
  *
  * @author Beni
@@ -29,7 +31,7 @@ public class LinkedList {
      * @param pos Represents the position of the song to be found
      * @return An integer to indicate the position of where the song can be found
      */
-    public String get(int pos){
+    public Song get(int pos){
         //Validate
         if(pos < 0 || pos >= numElements){
             throw new IndexOutOfBoundsException("Position must be between 0 and " + numElements + ". Supplied position was: " + pos);
@@ -62,6 +64,24 @@ public class LinkedList {
     }
 
     /**
+     * @param Song The song that is added to the end of the list
+     */
+    public void add(Object Song){
+        if (Song == null){
+            throw new IllegalArgumentException("Song object that is null cannot be added to list");
+        }
+        Field newField = new Field((business.Song) Song);
+
+        if (first == null){
+            first = newField;
+        } else {
+            last.next = newField;
+        }
+        last = newField;
+        numElements++;
+    }
+
+    /**
      * Return true if the list has no elements inside
      * @return True if the list has no elements, otherwise it's false
      */
@@ -78,10 +98,10 @@ public class LinkedList {
     }
 
     private static class Field{
-        private String data;
+        private Song data;
         private Field next;
 
-        public Field(String data){
+        public Field(Song data){
             this.data = data;
             this.next = null;
         }
