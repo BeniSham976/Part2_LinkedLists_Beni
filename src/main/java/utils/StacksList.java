@@ -13,8 +13,28 @@ public StacksList(){
 }
 
 //TODO: push()
+public void push(String data){
+    if(data == null){
+        throw new IllegalArgumentException("Nulls are not permitted in the stack");
+    }
+
+    Node newNode = new Node(data);
+    newNode.next = first;
+    first = newNode;
+    size++;
+}
 
 //TODO: pop()
+    public String pop(){
+        if(isEmpty()){
+            throw new EmptyStackException();
+        }
+
+        String removed = first.data;
+        first = first.next;
+        size--;
+        return removed;
+    }
 
 //TODO: peek()
     public String peek(){
@@ -34,8 +54,13 @@ public StacksList(){
         return size == 0;
 }
 
-private static class Node{
-    private Node next;
-    private String data;
-}
+    private static class Node{
+        private Node next;
+        private String data;
+
+        public Node(String data){
+            this.data = data;
+            this.next = null;
+        }
+    }
 }
